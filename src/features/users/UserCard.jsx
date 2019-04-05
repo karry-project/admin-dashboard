@@ -24,14 +24,12 @@ function UserCard(props) {
       <CardHeader
         avatar={
           <Avatar aria-label="Recipe" className={classes.avatar}>
-            {props.fullname[0].toUpperCase()}
+            <img width="40" src={props.url} />
           </Avatar>
         }
         title={<Typography noWrap>{props.fullname}</Typography>}
         subheader={props.email}
       />
-
-      <CardMedia className={classes.media} image={props.url} />
 
       <CardActions>{props.actions}</CardActions>
     </Card>

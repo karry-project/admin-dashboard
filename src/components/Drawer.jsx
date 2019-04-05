@@ -25,7 +25,10 @@ function Drawer({ buttonComponent, children }) {
 
 const useStyles = makeStyles({
   content: {
-    width: 420
+    width: 520,
+    padding: 20,
+    height: "100vh",
+    overflowY: "auto"
   }
 });
 

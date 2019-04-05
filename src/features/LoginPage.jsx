@@ -26,7 +26,7 @@ function LoginPage({ ...rest }) {
           type="form"
           handleSubmit={() => {
             Auth.login({ email, password });
-            history.push("/dashboard");
+            history.push("/");
           }}
           elevation={1}
           actions={[
