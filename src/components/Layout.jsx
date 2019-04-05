@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-
 import { Link, withRouter } from "react-router-dom";
 
 import AppBar from "@material-ui/core/AppBar";
@@ -9,8 +7,10 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Tooltip from "@material-ui/core/Tooltip";
 import Grid from "@material-ui/core/Grid";
 import HomeIcon from "@material-ui/icons/Home";
-import PersonIcon from "@material-ui/icons/Fingerprint";
+import FingerprintIcon from "@material-ui/icons/Fingerprint";
 import HightLightOff from "@material-ui/icons/HighlightOff";
+
+import * as Auth from "../services/auth";
 
 import { withStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
@@ -25,7 +25,7 @@ class ResponsiveDrawer extends React.Component {
   };
 
   render() {
-    const { classes, theme, loggedIn } = this.props;
+    const { loggedIn, classes } = this.props;
     return (
       <div>
         <AppBar position="fixed" className={classes.appBar}>
@@ -66,7 +66,10 @@ class ResponsiveDrawer extends React.Component {
                   <Tooltip title="Mon compte">
                     <IconButton
                       color="secondary"
-                      onClick={() => this.logout()}
+                      onClick={() => {
+                        Auth.logout();
+                        this.props.history.push("/login");
+                      }}
                       className={classes.button}
                     >
                       <HightLightOff />
@@ -76,10 +79,10 @@ class ResponsiveDrawer extends React.Component {
                 {!loggedIn && (
                   <IconButton
                     color="secondary"
-                    onClick={() => this.login()}
+                    // onClick={() => this.login()}
                     className={classes.button}
                   >
-                    <PersonIcon />
+                    <FingerprintIcon />
                   </IconButton>
                 )}
               </Grid>
@@ -110,8 +113,10 @@ const styles = theme => ({
   content: {
     flexGrow: 1,
     marginTop: 64,
-    padding: 20,
-    // background: '#26303c',
+    paddingLeft: 42,
+    paddingRight: 42,
+    paddingTop: 32,
+    background: "#c5f2ff1c",
     height: "calc(100vh - 85px - 24px)",
     zIndex: 420
   },

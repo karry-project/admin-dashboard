@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Paper from "../components/Paper";
 import Button from "../components/Button";
 
-import * as Auth from "../apiClient/auth";
+import * as Auth from "../services/auth";
 
 function LoginPage({ ...rest }) {
   const [email, setEmail] = useState("");

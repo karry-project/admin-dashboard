@@ -1,11 +1,12 @@
 import axios from "axios";
+import { getToken } from "./auth";
 
 const apiClient = axios.create({
   baseURL: "https://karry-dev.herokuapp.com",
   headers: {
     Accept: "application/json",
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*"
+    "Access-Control-Expose-Headers": "x-auth",
+    "x-auth": getToken()
   }
 });
 

@@ -1,51 +1,48 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/styles";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
+import CardHeader from "@material-ui/core/CardHeader";
+import Avatar from "@material-ui/core/Avatar";
 import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
-const styles = {
+const useStyles = makeStyles({
   card: {
     maxWidth: 345
   },
   media: {
-    height: 140
+    height: 150
   }
-};
+});
 
 function UserCard(props) {
-  const { classes } = props;
+  const classes = useStyles();
   return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={props.url}
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.title}
-          </Typography>
-          <Typography component="p">{props.description}</Typography>
-        </CardContent>
-      </CardActionArea>
+    <Card>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="Recipe" className={classes.avatar}>
+            {props.fullname[0].toUpperCase()}
+          </Avatar>
+        }
+        title={<Typography noWrap>{props.fullname}</Typography>}
+        subheader={props.email}
+      />
+
+      <CardMedia className={classes.media} image={props.url} />
+
       <CardActions>{props.actions}</CardActions>
     </Card>
   );
 }
 
 UserCard.propTypes = {
-  classes: PropTypes.object.isRequired,
-  url: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  actions: PropTypes.array
+  url: PropTypes.string.isRequired, // --> User image URL
+  fullname: PropTypes.string.isRequired, // --> User full name
+  email: PropTypes.string, // --> User email
+  actions: PropTypes.array // --> User actions
 };
 
-export default withStyles(styles)(UserCard);
+export default UserCard;

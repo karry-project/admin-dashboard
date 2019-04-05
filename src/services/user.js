@@ -1,36 +1,46 @@
 import apiClient from "./apiClient";
 
-export function getUsers() {
-  apiClient
-    .get("/users")
-    .then(data => data)
-    .catch(e => console.warn(e));
+export async function getUsers() {
+  try {
+    const { data } = await apiClient.get("/users");
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
 }
 
-export function getUser({ id }) {
-  apiClient
-    .get(`/users/${id}`)
-    .then(data => data)
-    .catch(e => console.warn(e));
+export async function getUser({ id }) {
+  try {
+    const { data } = await apiClient.get(`/users/${id}`);
+    return data;
+  } catch (e) {
+    return console.error(e);
+  }
 }
 
-export function patchUser({ id, payload }) {
-  apiClient
-    .post(`/users/${id}`, { ...payload })
-    .then(data => data)
-    .catch(e => console.warn(e));
+export async function patchUser({ id, payload }) {
+  try {
+    const { data } = await apiClient.post(`/users/${id}`, { ...payload });
+    return data;
+  } catch (e) {
+    return console.error(e);
+  }
 }
 
-export function createUser({ payload }) {
-  apiClient
-    .post(`/users`, { ...payload })
-    .then(data => data)
-    .catch(e => console.warn(e));
+export async function createUser({ payload }) {
+  try {
+    const { data } = await apiClient.post(`/users`, { ...payload });
+    return data;
+  } catch (e) {
+    return console.error(e);
+  }
 }
 
-export function deleteUser({ id }) {
-  apiClient
-    .post(`/users/${id}`)
-    .then(data => data)
-    .catch(e => console.warn(e));
+export async function deleteUser({ id }) {
+  try {
+    const { data } = await apiClient.post(`/users/${id}`);
+    return data;
+  } catch (e) {
+    return console.error(e);
+  }
 }

@@ -1,10 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import MUIPaper from '@material-ui/core/Paper';
-import MUICardHeader from '@material-ui/core/CardHeader';
-import Button from '@material-ui/core/Button';
-import CardContent from '@material-ui/core/CardContent';
-import { Grid } from '@material-ui/core';
+import React from "react";
+import styled from "styled-components";
+import MUIPaper from "@material-ui/core/Paper";
+import MUICardHeader from "@material-ui/core/CardHeader";
+import CardContent from "@material-ui/core/CardContent";
+import { Grid } from "@material-ui/core";
 
 const Wrapper = styled(MUIPaper)`
   && {
@@ -20,7 +19,7 @@ function Paper({ title, type, actions, children, handleSubmit }) {
     <Wrapper>
       {title && <MUICardHeader title={title} />}
       <CardContent>
-        {type === 'form' ? (
+        {type === "form" ? (
           <form
             onSubmit={e => {
               e.preventDefault();
