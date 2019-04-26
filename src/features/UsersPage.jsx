@@ -27,7 +27,7 @@ function UsersPage() {
 
   return (
     <div>
-      <Grid container spacing={32}>
+      <Grid container spacing={40}>
         <Grid item xs={12}>
           <PageHeader useSearch title="Users">
             <AddDrawer />
@@ -37,16 +37,12 @@ function UsersPage() {
           <Grid container spacing={32}>
             {users.map(user => {
               return (
-                <Grid key={user.id} item sm={6} md={4} xs={12}>
+                <Grid key={user.id} item sm={6} md={3} xs={12}>
                   <UserCard
                     fullname={user.fullname}
                     email={user.email}
                     url={user.profilePicture}
                     actions={[
-                      <EditDrawer
-                        user={user}
-                        key={`details-action-${user.id}`}
-                      />,
                       <DetailsDrawer
                         user={user}
                         key={`edit-action-${user.id}`}

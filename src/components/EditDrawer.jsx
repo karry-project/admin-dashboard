@@ -10,7 +10,11 @@ const EditDrawer = ({ user }) => (
         <EditIcon />
       </IconButton>
     )}
-  />
+  >
+    {({ onClose }) => {
+      return;
+    }}
+  </Drawer>
 );
 
 export default EditDrawer;

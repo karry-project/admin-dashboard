@@ -5,11 +5,22 @@ import Hidden from "@material-ui/core/Hidden";
 import { Typography } from "@material-ui/core";
 import SearchBar from "./SearchBar";
 
-function PageHeader({ title, children, useSearch }) {
+function PageHeader({ title, children, useSearch, size = "medium" }) {
+  const sizes = {
+    small: "h6",
+    xMedium: "h4",
+    medium: "h3",
+    big: "h1"
+  };
+
   return (
     <Grid container justify="space-between" alignItems="center">
       <Grid item>
-        <Typography color="secondary" variant="h3" style={{ fontWeight: 600 }}>
+        <Typography
+          color="secondary"
+          variant={sizes[size]}
+          style={{ fontWeight: 600 }}
+        >
           {title}
         </Typography>
       </Grid>
@@ -28,7 +39,8 @@ function PageHeader({ title, children, useSearch }) {
 
 PageHeader.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.node
+  children: PropTypes.node,
+  size: PropTypes.oneOf(["small", "medium", "big", "xMedium"])
 };
 
 export default PageHeader;

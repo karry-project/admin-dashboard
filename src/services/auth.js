@@ -7,7 +7,6 @@ export async function login({ email, password }) {
       localStorage.setItem("token", headers["x-auth"]);
       return status;
     })
-    .then(status => status)
     .catch(e => console.warn(e));
 }
 

@@ -1,35 +1,38 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/styles";
 
 import MUIDrawer from "@material-ui/core/Drawer";
-import { Button } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Apps";
+import { Button, Fab } from "@material-ui/core";
+import styled from "styled-components";
+import FloatingActionsButton from "./FloatingActionsButton";
 
-function Drawer({ buttonComponent, children }) {
-  const classes = useStyles();
-
+function Drawer({ buttonComponent, width, children }) {
   const [open, setOpening] = useState(false);
 
   const onClick = () => setOpening(true);
+  const onClose = () => setOpening(false);
 
   return (
     <React.Fragment>
-      {(buttonComponent && buttonComponent({ onClick })) || (
-        <Button onClick={() => setOpening(true)}>open</Button>
+      {(buttonComponent && buttonComponent({ onClick, onClose })) || (
+        <Button onClick={onClick}>open</Button>
       )}
-      <MUIDrawer open={open} onClose={() => setOpening(false)} anchor="right">
-        <div className={classes.content}>{children}</div>
+      <MUIDrawer open={open} onClose={onClose} anchor="right">
+        <Content width={width}>
+          {typeof children === "function" ? children({ onClose }) : children}
+        </Content>
       </MUIDrawer>
     </React.Fragment>
   );
 }
 
-const useStyles = makeStyles({
-  content: {
-    width: 520,
-    padding: 20,
-    height: "100vh",
-    overflowY: "auto"
-  }
-});
+const Content = styled.div`
+  width: ${({ width = 520 }) => width + "px"};
+  padding: 20px;
+  height: 100vh;
+  overflow-y: auto;
+
+  position: relative;
+`;
 
 export default Drawer;

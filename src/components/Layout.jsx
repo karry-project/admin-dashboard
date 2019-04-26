@@ -61,7 +61,7 @@ class ResponsiveDrawer extends React.Component {
                 </Button>
               </Grid>
 
-              <Grid item className={classes.menuLinks}>
+              <Grid item>
                 {loggedIn && (
                   <Tooltip title="Mon compte">
                     <IconButton

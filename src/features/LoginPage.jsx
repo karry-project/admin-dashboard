@@ -16,23 +16,20 @@ function LoginPage({ ...rest }) {
     <Grid
       container
       style={{ height: "100vh" }}
-      direction="column"
       alignItems="center"
       justify="center"
     >
-      <Grid item xs={4}>
+      <Grid item xs={12} sm={4}>
         <Paper
           title="Login"
           type="form"
-          handleSubmit={() => {
-            Auth.login({ email, password });
-            history.push("/");
+          handleSubmit={async () => {
+            return Auth.login({ email, password }).then(() =>
+              history.push("/")
+            );
           }}
           elevation={1}
           actions={[
-            <Button onClick={() => history.push("/signup")} light>
-              Inscription
-            </Button>,
             <Button type="submit" validation>
               Connexion
             </Button>

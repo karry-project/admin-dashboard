@@ -16,10 +16,7 @@ function TripsTable() {
 
   useEffect(() => {
     async function fetchTrips() {
-      return await apiClient.get("/trips").then(({ data }) => {
-        console.log(data);
-        setTrips(data);
-      });
+      return await apiClient.get("/trips").then(({ data }) => setTrips(data));
     }
 
     fetchTrips();
